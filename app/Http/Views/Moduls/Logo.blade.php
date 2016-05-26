@@ -1,0 +1,1 @@
+<a href="/" class="logo pull-left"><img src="{{imageReset($Configs['logo'])}}" alt="{{$Configs['sologan']}}" title="{{$Configs['sologan']}}"></a>
