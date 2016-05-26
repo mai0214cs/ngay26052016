@@ -147,6 +147,7 @@
 @endsection
 @section('footer')
 <script>
+    page = 1;
     function SearchProduct(){
     var pt = $('#SearchForm'), data = new Object();
     data.name = pt.find('[name="sName"]').val();
@@ -157,6 +158,8 @@
     data.date1 = pt.find('[name="dateend"]').val();
     data.action = pt.find('[name="sAction"]').val();
     data.status = pt.find('[name="sStatus"]').val();
+    data.pageselect = page;
+    
     AjaxData('/admin/product/search', data, 'UpdateSearch');
     }
     function UpdateSearch(rs){
@@ -180,6 +183,10 @@
             cells[11].innerHTML = '<a class="label label-primary" href="/admin/product/list/'+cat.id+'/edit"><?= trans('admin.buttonEdit') ?></a> <a class="label label-danger" href="/admin/product/list/delete/'+cat.id+'"><?= trans('admin.buttonDelete') ?></a>';
             template.parentNode.appendChild(clone);
         }
+    }
+    function SelectPageShow(pageid){
+        page = pageid;
+        SearchProduct();
     }
     function CheckStatus(type, id){
         AjaxData('/admin/product/list/status/'+type+'/'+id, {}, 'UpdateStatus');

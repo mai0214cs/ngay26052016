@@ -47,10 +47,10 @@ function GetPagination($current, $total, $limitcount){
     // Get begin
     $begin = ($current-$middle<=1)?1:$current-$middle;
     $end = ($begin+$limitcount>=$total)?$total:$begin+$limitcount;
-    if($current>1){$result.='<li><a aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>';}
+    if($current>1){$result.='<li><a onclick="SelectPageShow(1)" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>';}
     for($i=$begin;$i<=$end; $i++){
-        $result .= '<li '.($current==$i?'class="active"':'').'><a>'.$i.'</a></li>';
+        $result .= '<li '.($current==$i?'class="active"':'').'><a onclick="SelectPageShow('.$i.')">'.$i.'</a></li>';
     }
-    if($current<$total){$result.='<li><a onclick="SelectPageShow()" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>';}
+    if($current<$total){$result.='<li><a onclick="SelectPageShow('.$total.')" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>';}
     return '<nav><ul class="pagination">'.$result.'</ul></nav>';
 }
